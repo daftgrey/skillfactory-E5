@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+<div class="allcontain">
+    <br>
+    <br>
+    <div class="row">
+        {% for car in cars %}
+        {% if not car.is_banner %}
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="txthover">
+                <img src="{{ car.photo.url }}" alt="">
+                <div class="txtcontent">
+                    <div class="stars">
+                        <div class="glyphicon glyphicon-star"></div>
+                        <div class="glyphicon glyphicon-star"></div>
+                        <div class="glyphicon glyphicon-star"></div>
+                    </div>
+                    <div class="simpletxt">
+                        <h3 class="name">{{ car.manufacturer }} {{ car.model }}</h3>
+                        <p>{{ car.content | truncatewords_html:20 | safe }}</p>
+                        <form action="{{ car.get_absolute_url }}">
+                            <button>READ MORE</button>
+                        </form><br>
+                    </div>
+                    <div class="stars2">
+                        <div class="glyphicon glyphicon-star"></div>
+                        <div class="glyphicon glyphicon-star"></div>
+                        <div class="glyphicon glyphicon-star"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    {% if page_obj.has_other_pages %}
+    <nav aria-label="...">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">Previous</a>
+            </li>
+            {% endif %}
+
+            {% for p in page_obj.paginator.page_range %}
+            {% if page_obj.number == p %}
+            <li class="page-item active">
+                <a class="page-link" href="?page={{ p }}">{{ p }} <span class="sr-only">(current)</span></a>
+            </li>
+            {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+            </li>
+            {% endif %}
+
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</div>
+{% endblock %}

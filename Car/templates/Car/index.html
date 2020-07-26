@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block content %}
+
+<div class="allcontain">
+    <br>
+    <br>
+    <div class="row">
+        {% for car in cars %}
+        {% if not car.is_banner %}
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="txthover">
+                <img src="{{ car.photo.url }}" alt="">
+                <div class="txtcontent">
+                    <div class="stars">
+                        <div class="glyphicon glyphicon-star"></div>
+                        <div class="glyphicon glyphicon-star"></div>
+                        <div class="glyphicon glyphicon-star"></div>
+                    </div>
+                    <div class="simpletxt">
+                        <h3 class="name">{{ car.manufacturer }} {{ car.model }}</h3>
+                        <p>{{ car.content | truncatewords_html:20 | safe }}</p>
+                        <form action="{{ car.get_absolute_url }}">
+                            <button>READ MORE</button>
+                        </form><br>
+                    </div>
+                    <div class="stars2">
+                        <div class="glyphicon glyphicon-star"></div>
+                        <div class="glyphicon glyphicon-star"></div>
+                        <div class="glyphicon glyphicon-star"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

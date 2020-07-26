@@ -1,0 +1,29 @@
+{% load static %}
+{% load menu %}
+<div class="allcontain">
+    <div class="header">
+        <ul class="socialicon">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+        </ul>
+        <ul class="givusacall">
+            <li>Give us a call : +66666666 </li>
+        </ul>
+    </div>
+    <nav class="topnavbar navbar-default topnav">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed toggle-costume" data-toggle="collapse" data-target="#upmenu" aria-expanded="false">
+                    <span class="sr-only"> Toggle navigaion</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand logo" href="{% url 'home' %}"><img src="{% static 'image/logo1.png' %}" alt="logo"></a>
+            </div>
+        </div>
+        {% show_menu %}
+    </nav>
+</div>
