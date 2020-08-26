@@ -1,0 +1,18 @@
+server {
+    listen 80;
+    server_name 84.201.128.110;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+    }
+
+    location /static/ {
+        root /home/daftgrey/projects/skillfactory-D10;
+    }
+
+    location /media/ {
+        root /home/daftgrey/projects/skillfactory-D10;
+    }
+}
